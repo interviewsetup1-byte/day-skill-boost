@@ -81,7 +81,7 @@ export const CourseCard = ({
         {/* CTA Button */}
         <Button 
           onClick={onApply}
-          variant="cta" 
+          variant={price === "5,000" ? "cta" : "accent"}
           className="w-full"
         >
           Apply Now

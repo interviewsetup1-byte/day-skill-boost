@@ -8,18 +8,22 @@ import { Textarea } from "@/components/ui/textarea";
 import { Shield } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-const courses = [
-  "EdTech Fundamentals Bootcamp",
-  "Interview Mastery: Coding & HR",
+const featuredCourses = [
   "English Communication Accelerator",
-  "Advanced Excel Mastery",
-  "Complete SQL Master",
-  "AI for Everyone: Practical Introduction",
-  "System Design Interview Crash Course",
-  "Effective Business Communication",
-  "EdTech Product Design Workshop",
-  "AI Tools for Teachers"
+  "Business Communication (English)",
+  "Excel Mastery",
+  "Advanced English for Interviews",
+  "Professional English Presentation Skills"
 ];
+
+const techCourses = [
+  "Data Science Fundamentals",
+  "SQL for Data Analysis",
+  "Data Analysis Essentials",
+  "Artificial Intelligence Basics"
+];
+
+const allCourses = [...featuredCourses, ...techCourses];
 
 export const EnrollmentForm = () => {
   const [formData, setFormData] = useState({
@@ -109,7 +113,18 @@ export const EnrollmentForm = () => {
                   <SelectValue placeholder="Select a course" />
                 </SelectTrigger>
                 <SelectContent>
-                  {courses.map((course) => (
+                  <SelectItem value="" disabled>
+                    Featured Courses (₹5,000)
+                  </SelectItem>
+                  {featuredCourses.map((course) => (
+                    <SelectItem key={course} value={course}>
+                      {course}
+                    </SelectItem>
+                  ))}
+                  <SelectItem value="" disabled>
+                    Tech & Data Courses (₹10,000)
+                  </SelectItem>
+                  {techCourses.map((course) => (
                     <SelectItem key={course} value={course}>
                       {course}
                     </SelectItem>

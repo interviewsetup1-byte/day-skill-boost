@@ -4,9 +4,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CourseCard } from "@/components/CourseCard";
-import { TestimonialCard } from "@/components/TestimonialCard";
+
 import { EnrollmentForm } from "@/components/EnrollmentForm";
-import heroImage from "@/assets/hero-image.jpg";
+import heroImage from "@/assets/hero-illustration.jpg";
+import logoImage from "@/assets/logo.png";
 import { 
   BookOpen, 
   Code, 
@@ -34,41 +35,13 @@ import {
 const Index = () => {
   const [selectedCourse, setSelectedCourse] = useState<string>("");
 
-  const courses = [
-    {
-      title: "EdTech Fundamentals Bootcamp",
-      description: "Gain an overview of modern educational technology, tools, and pedagogy. Design and present your own EdTech-based lesson or project.",
-      icon: <GraduationCap className="h-6 w-6" />,
-      days: [
-        "Day 1: EdTech Landscape & Overview",
-        "Day 2: Learning Theories & Digital Pedagogy",
-        "Day 3: Content Creation Tools",
-        "Day 4: Learning Management Systems",
-        "Day 5: Assessment & Analytics",
-        "Day 6: Project Development",
-        "Day 7: Presentation & Future Trends"
-      ],
-      highlights: ["Live Interactive Sessions", "Project-Based Learning", "Industry Tools", "Certificate of Completion"]
-    },
-    {
-      title: "Interview Mastery: Coding & HR",
-      description: "Complete interview preparation combining technical coding challenges with behavioral HR questions. Includes mock sessions and personalized feedback.",
-      icon: <Code className="h-6 w-6" />,
-      days: [
-        "Day 1: Interview Strategy & Mindset",
-        "Day 2: Data Structures & Algorithms",
-        "Day 3: Coding Practice & Problem Solving",
-        "Day 4: Behavioral Questions & STAR Method",
-        "Day 5: Mock Technical Interviews",
-        "Day 6: Mock HR Interviews",
-        "Day 7: Final Assessment & Feedback"
-      ],
-      highlights: ["100% Interview Guarantee", "Mock Interview Sessions", "Personalized Feedback", "Resume Review"]
-    },
+  const featuredCourses = [
     {
       title: "English Communication Accelerator",
       description: "Boost your English fluency, pronunciation, and presentation skills. 70% speaking practice with roleplay scenarios and confidence building.",
       icon: <MessageSquare className="h-6 w-6" />,
+      price: "5,000",
+      category: "featured",
       days: [
         "Day 1: Pronunciation & Accent Training",
         "Day 2: Grammar & Sentence Structure",
@@ -78,72 +51,14 @@ const Index = () => {
         "Day 6: Group Discussions & Debates",
         "Day 7: Confidence Building & Assessment"
       ],
-      highlights: ["70% Speaking Practice", "Accent Training", "Roleplay Scenarios", "Confidence Building"]
+      highlights: ["70% Speaking Practice", "Accent Training", "Roleplay Scenarios", "Guaranteed Job Interviews"]
     },
     {
-      title: "Advanced Excel Mastery",
-      description: "Master Excel from basics to advanced dashboards with hands-on tasks. Learn formulas, pivot tables, macros, and data visualization.",
-      icon: <BarChart3 className="h-6 w-6" />,
-      days: [
-        "Day 1: Excel Fundamentals & Functions",
-        "Day 2: Advanced Formulas & Logic",
-        "Day 3: Data Analysis & Pivot Tables",
-        "Day 4: Charts & Data Visualization",
-        "Day 5: Macros & Automation",
-        "Day 6: Dashboard Creation",
-        "Day 7: Real-world Projects"
-      ],
-      highlights: ["Hands-on Projects", "Dashboard Creation", "Macro Programming", "Data Analysis Skills"]
-    },
-    {
-      title: "Complete SQL Master",
-      description: "SQL fundamentals to advanced queries for data analysis and backend roles. Practice with real-world datasets and database design.",
-      icon: <Database className="h-6 w-6" />,
-      days: [
-        "Day 1: SQL Basics & Database Concepts",
-        "Day 2: SELECT Statements & Filtering",
-        "Day 3: Joins & Relationships",
-        "Day 4: Aggregate Functions & Grouping",
-        "Day 5: Subqueries & Advanced Queries",
-        "Day 6: Database Design & Optimization",
-        "Day 7: Real-world Projects"
-      ],
-      highlights: ["Real-world Datasets", "Database Design", "Query Optimization", "Industry Best Practices"]
-    },
-    {
-      title: "AI for Everyone: Practical Introduction",
-      description: "Learn AI/ML basics with Python and create a capstone project. No prior experience needed - designed for absolute beginners.",
-      icon: <Brain className="h-6 w-6" />,
-      days: [
-        "Day 1: AI Fundamentals & Applications",
-        "Day 2: Python for AI (Crash Course)",
-        "Day 3: Machine Learning Concepts",
-        "Day 4: Data Processing & Analysis",
-        "Day 5: Building Your First AI Model",
-        "Day 6: AI Tools & Platforms",
-        "Day 7: Capstone Project Presentation"
-      ],
-      highlights: ["No Prerequisites", "Python Crash Course", "Hands-on AI Models", "Capstone Project"]
-    },
-    {
-      title: "System Design Interview Crash Course",
-      description: "Master system design concepts and methodologies. Practice with mock exercises and learn to architect scalable systems.",
-      icon: <Settings className="h-6 w-6" />,
-      days: [
-        "Day 1: System Design Fundamentals",
-        "Day 2: Scalability & Load Balancing",
-        "Day 3: Database Design & Storage",
-        "Day 4: Caching & Performance",
-        "Day 5: Microservices Architecture",
-        "Day 6: Mock System Design Interviews",
-        "Day 7: Advanced Topics & Best Practices"
-      ],
-      highlights: ["Mock Design Sessions", "Scalability Concepts", "Architecture Patterns", "Industry Standards"]
-    },
-    {
-      title: "Effective Business Communication",
+      title: "Business Communication (English)",
       description: "Professional English for emails, meetings, and negotiations. Master workplace communication and presentation skills.",
       icon: <Briefcase className="h-6 w-6" />,
+      price: "5,000",
+      category: "featured",
       days: [
         "Day 1: Professional Email Writing",
         "Day 2: Meeting & Conference Calls",
@@ -153,66 +68,132 @@ const Index = () => {
         "Day 6: Leadership Communication",
         "Day 7: Personal Branding & Networking"
       ],
-      highlights: ["Email Templates", "Meeting Scripts", "Presentation Skills", "Negotiation Tactics"]
+      highlights: ["Email Templates", "Meeting Scripts", "Presentation Skills", "Guaranteed Job Interviews"]
     },
     {
-      title: "EdTech Product Design Workshop",
-      description: "Design an EdTech product from ideation to pitch. Learn user research, prototyping, and product strategy for education technology.",
-      icon: <Palette className="h-6 w-6" />,
+      title: "Excel Mastery",
+      description: "Master Excel from basics to advanced dashboards with hands-on tasks. Learn formulas, pivot tables, macros, and data visualization.",
+      icon: <BarChart3 className="h-6 w-6" />,
+      price: "5,000",
+      category: "featured",
       days: [
-        "Day 1: Product Design Thinking",
-        "Day 2: User Research & Personas",
-        "Day 3: Ideation & Problem Definition",
-        "Day 4: Prototyping & Wireframing",
-        "Day 5: User Testing & Iteration",
-        "Day 6: Business Model & Strategy",
-        "Day 7: Final Pitch & Presentation"
+        "Day 1: Excel Fundamentals & Functions",
+        "Day 2: Advanced Formulas & Logic",
+        "Day 3: Data Analysis & Pivot Tables",
+        "Day 4: Charts & Data Visualization",
+        "Day 5: Macros & Automation",
+        "Day 6: Dashboard Creation",
+        "Day 7: Real-world Projects"
       ],
-      highlights: ["Design Thinking Process", "Prototyping Tools", "User Research", "Pitch Presentation"]
+      highlights: ["Hands-on Projects", "Dashboard Creation", "Macro Programming", "Guaranteed Job Interviews"]
     },
     {
-      title: "AI Tools for Teachers",
-      description: "AI tools for assessments, content creation, and student success. Transform your teaching with practical AI applications.",
-      icon: <Sparkles className="h-6 w-6" />,
+      title: "Advanced English for Interviews",
+      description: "Specialized English training focused on interview success. Learn to answer confidently and professionally in any interview setting.",
+      icon: <Users className="h-6 w-6" />,
+      price: "5,000",
+      category: "featured",
       days: [
-        "Day 1: AI in Education Overview",
-        "Day 2: Content Creation with AI",
-        "Day 3: Assessment & Grading Tools",
-        "Day 4: Student Analytics & Insights",
-        "Day 5: Personalized Learning Platforms",
-        "Day 6: Classroom Management AI",
-        "Day 7: Implementation Strategy"
+        "Day 1: Interview Basics & Confidence",
+        "Day 2: Common Interview Questions",
+        "Day 3: Technical Interview English",
+        "Day 4: Behavioral Questions & STAR Method",
+        "Day 5: Mock Interview Practice",
+        "Day 6: Advanced Interview Techniques",
+        "Day 7: Final Assessment & Feedback"
       ],
-      highlights: ["Teacher-Focused", "Practical AI Tools", "Assessment Automation", "Student Analytics"]
+      highlights: ["Mock Interviews", "Interview-specific Training", "Confidence Building", "Guaranteed Job Interviews"]
+    },
+    {
+      title: "Professional English Presentation Skills",
+      description: "Master the art of professional presentations in English. Build confidence and deliver impactful presentations that impress.",
+      icon: <Award className="h-6 w-6" />,
+      price: "5,000",
+      category: "featured",
+      days: [
+        "Day 1: Presentation Structure & Planning",
+        "Day 2: Engaging Opening & Closing",
+        "Day 3: Visual Aids & Storytelling",
+        "Day 4: Body Language & Voice",
+        "Day 5: Handling Q&A Sessions",
+        "Day 6: Advanced Presentation Techniques",
+        "Day 7: Final Presentation & Feedback"
+      ],
+      highlights: ["Live Presentations", "Storytelling Techniques", "Visual Design", "Guaranteed Job Interviews"]
     }
   ];
 
-  const testimonials = [
+  const techCourses = [
     {
-      name: "Pooja R.",
-      review: "I cracked my first job interview after the coding bootcamp! The mock sessions and personalized feedback were game-changers.",
-      course: "Interview Mastery",
-      rating: 5
+      title: "Data Science Fundamentals",
+      description: "Learn the foundations of data science including statistics, Python programming, and data visualization for modern analytics roles.",
+      icon: <BarChart3 className="h-6 w-6" />,
+      price: "10,000",
+      category: "tech",
+      days: [
+        "Day 1: Data Science Overview & Tools",
+        "Day 2: Python for Data Science",
+        "Day 3: Statistics & Probability",
+        "Day 4: Data Cleaning & Preprocessing",
+        "Day 5: Data Visualization",
+        "Day 6: Introduction to Machine Learning",
+        "Day 7: Capstone Project & Presentation"
+      ],
+      highlights: ["Python Programming", "Real Datasets", "Visualization Tools", "Guaranteed Job Interviews"]
     },
     {
-      name: "Ravi T.",
-      review: "The English course boosted my confidence daily. Now I speak fluently in meetings and presentations.",
-      course: "English Communication",
-      rating: 5
+      title: "SQL for Data Analysis",
+      description: "Master SQL from basics to advanced queries for data analysis roles. Practice with real-world datasets and database optimization.",
+      icon: <Database className="h-6 w-6" />,
+      price: "10,000",
+      category: "tech",
+      days: [
+        "Day 1: SQL Basics & Database Concepts",
+        "Day 2: SELECT Statements & Filtering",
+        "Day 3: Joins & Relationships",
+        "Day 4: Aggregate Functions & Grouping",
+        "Day 5: Subqueries & Advanced Queries",
+        "Day 6: Database Design & Optimization",
+        "Day 7: Real-world Projects"
+      ],
+      highlights: ["Real-world Datasets", "Database Design", "Query Optimization", "Guaranteed Job Interviews"]
     },
     {
-      name: "Sneha M.",
-      review: "Mock interviews and feedback were incredible! I got selected in 3 companies within 2 weeks.",
-      course: "Interview Mastery",
-      rating: 5
+      title: "Data Analysis Essentials",
+      description: "Complete data analysis workflow using Excel, SQL, and Python. Transform raw data into actionable business insights.",
+      icon: <TrendingUp className="h-6 w-6" />,
+      price: "10,000",
+      category: "tech",
+      days: [
+        "Day 1: Data Analysis Framework",
+        "Day 2: Excel for Data Analysis",
+        "Day 3: SQL for Data Extraction",
+        "Day 4: Python for Data Processing",
+        "Day 5: Statistical Analysis",
+        "Day 6: Creating Business Reports",
+        "Day 7: End-to-End Project"
+      ],
+      highlights: ["Multi-tool Approach", "Business Insights", "Report Creation", "Guaranteed Job Interviews"]
     },
     {
-      name: "Arjun K.",
-      review: "Excel course made data analysis so easy! I got promoted within 3 months of completing the course.",
-      course: "Excel Mastery",
-      rating: 5
+      title: "Artificial Intelligence Basics",
+      description: "Introduction to AI and machine learning concepts with practical implementation. No prior experience needed - perfect for beginners.",
+      icon: <Brain className="h-6 w-6" />,
+      price: "10,000",
+      category: "tech",
+      days: [
+        "Day 1: AI Fundamentals & Applications",
+        "Day 2: Python for AI (Crash Course)",
+        "Day 3: Machine Learning Concepts",
+        "Day 4: Data Processing & Analysis",
+        "Day 5: Building Your First AI Model",
+        "Day 6: AI Tools & Platforms",
+        "Day 7: Capstone Project Presentation"
+      ],
+      highlights: ["No Prerequisites", "Python Training", "Hands-on AI Models", "Guaranteed Job Interviews"]
     }
   ];
+
 
   const faqs = [
     {
@@ -257,15 +238,15 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Target className="h-8 w-8 text-primary" />
+              <img src={logoImage} alt="Interview Setup Logo" className="h-8 w-8" />
               <span className="text-2xl font-bold text-primary">Interview Setup</span>
             </div>
             <div className="flex items-center gap-4">
               <Button variant="ghost" onClick={() => scrollToSection('courses')}>
                 Courses
               </Button>
-              <Button variant="ghost" onClick={() => scrollToSection('testimonials')}>
-                Reviews
+              <Button variant="ghost" onClick={() => scrollToSection('why-choose')}>
+                Why Choose Us
               </Button>
               <Button variant="cta" onClick={() => scrollToSection('enrollment')}>
                 Apply Now
@@ -341,7 +322,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <Badge variant="outline" className="mb-4">
-              10 Professional Bootcamps
+              9 Professional Bootcamps
             </Badge>
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
               Choose Your Career Transformation
@@ -352,26 +333,62 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {courses.map((course, index) => (
-              <CourseCard
-                key={index}
-                title={course.title}
-                description={course.description}
-                days={course.days}
-                price="5,000"
-                originalPrice="7,000"
-                onApply={() => handleApply(course.title)}
-                icon={course.icon}
-                highlights={course.highlights}
-              />
-            ))}
+          {/* Featured Courses - ₹5,000 */}
+          <div className="mb-16">
+            <div className="text-center mb-8">
+              <Badge variant="secondary" className="mb-4 bg-success/10 text-success">
+                Featured Courses - ₹5,000 each
+              </Badge>
+              <h3 className="text-2xl md:text-3xl font-bold text-success">
+                Guaranteed Job Interviews
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {featuredCourses.map((course, index) => (
+                <CourseCard
+                  key={index}
+                  title={course.title}
+                  description={course.description}
+                  days={course.days}
+                  price={course.price}
+                  onApply={() => handleApply(course.title)}
+                  icon={course.icon}
+                  highlights={course.highlights}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Tech & Data Courses - ₹10,000 */}
+          <div>
+            <div className="text-center mb-8">
+              <Badge variant="secondary" className="mb-4 bg-warning/10 text-warning">
+                Tech & Data Courses - ₹10,000 each
+              </Badge>
+              <h3 className="text-2xl md:text-3xl font-bold text-warning">
+                Guaranteed Job Interviews
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {techCourses.map((course, index) => (
+                <CourseCard
+                  key={index}
+                  title={course.title}
+                  description={course.description}
+                  days={course.days}
+                  price={course.price}
+                  onApply={() => handleApply(course.title)}
+                  icon={course.icon}
+                  highlights={course.highlights}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-20">
+      <section id="why-choose" className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
@@ -434,28 +451,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge variant="outline" className="mb-4">
-              ⭐ 4.9/5 Average Rating
-            </Badge>
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Success Stories from Our Students
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Real students, real results. See how our bootcamps transformed their careers.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <TestimonialCard key={index} {...testimonial} />
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Enrollment Form Section */}
       <section id="enrollment" className="py-20">
@@ -536,6 +531,10 @@ const Index = () => {
                   <Phone className="h-4 w-4" />
                   <span>+91-63921 61153</span>
                 </div>
+                <div className="flex items-center gap-2">
+                  <Phone className="h-4 w-4" />
+                  <span>+91-9335172143</span>
+                </div>
               </div>
             </div>
             
@@ -549,10 +548,10 @@ const Index = () => {
                   All Courses
                 </button>
                 <button 
-                  onClick={() => scrollToSection('testimonials')}
+                  onClick={() => scrollToSection('why-choose')}
                   className="block hover:text-primary-foreground transition-colors"
                 >
-                  Student Reviews
+                  Why Choose Us
                 </button>
                 <button 
                   onClick={() => scrollToSection('enrollment')}
