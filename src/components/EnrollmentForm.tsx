@@ -37,28 +37,65 @@ export const EnrollmentForm = () => {
   });
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Create Google Form URL with pre-filled data
-    const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdExample/viewform";
-    const params = new URLSearchParams({
-      "entry.123456789": formData.name,
-      "entry.987654321": formData.email,
-      "entry.456789123": formData.phone,
-      "entry.789123456": formData.course,
-      "entry.321654987": formData.timing,
-      "entry.654987321": formData.experience,
-      "entry.987321654": formData.motivation
-    });
+    // Validate required fields
+    if (!formData.name || !formData.email || !formData.phone || !formData.course || !formData.motivation) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
+      });
+      return;
+    }
     
-    // Open Google Form in new tab
-    window.open(`${googleFormUrl}?${params.toString()}`, '_blank');
-    
-    toast({
-      title: "Application Started!",
-      description: "Please complete the form in the new tab that opened.",
-    });
+    try {
+      // Create Google Form submission URL
+      // Replace this URL with your actual Google Form URL
+      const googleFormUrl = "https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse";
+      
+      const formDataToSubmit = new FormData();
+      // Replace these entry IDs with your actual Google Form field IDs
+      formDataToSubmit.append("entry.2005620554", formData.name); // Name field
+      formDataToSubmit.append("entry.1045781291", formData.email); // Email field  
+      formDataToSubmit.append("entry.1166974658", formData.phone); // Phone field
+      formDataToSubmit.append("entry.839337160", formData.course); // Course field
+      formDataToSubmit.append("entry.1065046570", formData.timing); // Timing field
+      formDataToSubmit.append("entry.1351559828", formData.experience); // Experience field
+      formDataToSubmit.append("entry.1898620813", formData.motivation); // Motivation field
+      
+      // Submit to Google Form
+      await fetch(googleFormUrl, {
+        method: 'POST',
+        body: formDataToSubmit,
+        mode: 'no-cors'
+      });
+      
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        course: "",
+        timing: "",
+        experience: "",
+        motivation: ""
+      });
+      
+      toast({
+        title: "Application Submitted Successfully!",
+        description: "We'll contact you within 24 hours with course details and payment information.",
+      });
+      
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast({
+        title: "Submission Error",
+        description: "Please try again or contact us directly at interviewsetup1@gmail.com",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
@@ -113,7 +150,7 @@ export const EnrollmentForm = () => {
                   <SelectValue placeholder="Select a course" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="" disabled>
+                  <SelectItem value="featured-header" disabled className="font-semibold text-primary">
                     Featured Courses (₹5,000)
                   </SelectItem>
                   {featuredCourses.map((course) => (
@@ -121,7 +158,7 @@ export const EnrollmentForm = () => {
                       {course}
                     </SelectItem>
                   ))}
-                  <SelectItem value="" disabled>
+                  <SelectItem value="tech-header" disabled className="font-semibold text-primary">
                     Tech & Data Courses (₹10,000)
                   </SelectItem>
                   {techCourses.map((course) => (
