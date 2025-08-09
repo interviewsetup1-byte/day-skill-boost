@@ -291,9 +291,9 @@ const Index = () => {
               Explore Courses
             </Button>
             <Button 
-              variant="outline" 
+              variant="secondary" 
               size="lg"
-              className="text-white border-white hover:bg-white hover:text-primary text-lg px-8 py-4"
+              className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-4 border-0"
               onClick={() => scrollToSection('enrollment')}
             >
               Apply Now
