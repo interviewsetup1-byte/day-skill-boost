@@ -53,18 +53,18 @@ export const EnrollmentForm = () => {
     try {
       // Create Google Form submission URL
       // Replace this URL with your actual Google Form URL
-      const googleFormUrl = "https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse";
+      const googleFormUrl = "https://sheetdb.io/api/v1/ryq7sdaj0yggi";
       
       const formDataToSubmit = new FormData();
       // Replace these entry IDs with your actual Google Form field IDs
-      formDataToSubmit.append("entry.2005620554", formData.name); // Name field
-      formDataToSubmit.append("entry.1045781291", formData.email); // Email field  
-      formDataToSubmit.append("entry.1166974658", formData.phone); // Phone field
-      formDataToSubmit.append("entry.839337160", formData.course); // Course field
-      formDataToSubmit.append("entry.1065046570", formData.timing); // Timing field
-      formDataToSubmit.append("entry.1351559828", formData.experience); // Experience field
-      formDataToSubmit.append("entry.1898620813", formData.motivation); // Motivation field
-      
+      formDataToSubmit.append("Name", formData.name); // Name field
+      formDataToSubmit.append("Email", formData.email); // Email field  
+      formDataToSubmit.append("Phone", formData.phone); // Phone field
+      formDataToSubmit.append("Course", formData.course); // Course field
+      formDataToSubmit.append("Timing", formData.timing); // Timing field
+      formDataToSubmit.append("Experience", formData.experience); // Experience field
+      formDataToSubmit.append("Motivation", formData.motivation); // Motivation field
+
       // Submit to Google Form
       await fetch(googleFormUrl, {
         method: 'POST',
