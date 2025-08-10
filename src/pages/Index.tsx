@@ -8,6 +8,7 @@ import { CourseCard } from "@/components/CourseCard";
 import { EnrollmentForm } from "@/components/EnrollmentForm";
 import heroImage from "@/assets/hero-illustration.jpg";
 import logoImage from "@/assets/logo.png";
+import Favicon from "@/components/Favicon";
 import { 
   BookOpen, 
   Code, 
@@ -233,6 +234,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Favicon />
       {/* Header */}
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b">
         <div className="container mx-auto px-4 py-4">
@@ -257,31 +259,38 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section id="hero" className="relative min-h-[80vh] md:min-h-[88vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image + Gradient Overlay */}
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
+          aria-hidden
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-accent/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/80 to-background/95"></div>
         </div>
-        
-        <div className="relative z-10 container mx-auto px-4 text-center text-white">
-          <Badge variant="secondary" className="mb-6 text-primary bg-white/90">
+
+        {/* Decorative Blurs */}
+        <div className="pointer-events-none absolute -top-24 -left-16 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-accent/20 blur-3xl" />
+
+        <div className="relative z-10 container mx-auto px-4 text-center text-card">
+          <Badge variant="secondary" className="mb-6 text-primary bg-card animate-fade-in">
             🎯 100% Interview Guarantee
           </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Master Job-Ready Skills in
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-warning to-white">
+
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-fade-in">
+            Master Job‑Ready Skills in
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-warning to-primary-foreground">
               Just 7 Days
             </span>
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
-            Join our live, instructor-led bootcamps to boost your English communication, 
-            technical skills, or EdTech expertise. Includes certifications, mock sessions, 
-            and personalized feedback.
+
+          <p className="text-lg md:text-2xl mb-10 max-w-3xl mx-auto leading-relaxed text-card/90 animate-fade-in">
+            Live, instructor‑led bootcamps to boost your English communication, technical skills, and confidence.
+            Includes certification, mock sessions, and personalized feedback.
           </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-fade-in">
             <Button 
               variant="hero" 
               size="lg" 
@@ -293,23 +302,24 @@ const Index = () => {
             <Button 
               variant="secondary" 
               size="lg"
-              className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-4 border-0"
+              className="bg-card text-primary hover:bg-card/90 text-lg px-8 py-4 border-0"
               onClick={() => scrollToSection('enrollment')}
             >
               Apply Now
             </Button>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="flex items-center justify-center gap-3 p-4 bg-white/10 rounded-lg backdrop-blur-sm">
+
+          {/* Trust Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto animate-fade-in">
+            <div className="flex items-center justify-center gap-3 p-4 bg-card/80 rounded-lg backdrop-blur-sm">
               <Users className="h-6 w-6 text-warning" />
               <span className="font-semibold">5000+ Students</span>
             </div>
-            <div className="flex items-center justify-center gap-3 p-4 bg-white/10 rounded-lg backdrop-blur-sm">
+            <div className="flex items-center justify-center gap-3 p-4 bg-card/80 rounded-lg backdrop-blur-sm">
               <Award className="h-6 w-6 text-warning" />
               <span className="font-semibold">100% Live Sessions</span>
             </div>
-            <div className="flex items-center justify-center gap-3 p-4 bg-white/10 rounded-lg backdrop-blur-sm">
+            <div className="flex items-center justify-center gap-3 p-4 bg-card/80 rounded-lg backdrop-blur-sm">
               <TrendingUp className="h-6 w-6 text-warning" />
               <span className="font-semibold">95% Success Rate</span>
             </div>
